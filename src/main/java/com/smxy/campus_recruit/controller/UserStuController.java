@@ -43,7 +43,7 @@ public class UserStuController {
         if (userStu != null) {
             session.setAttribute("userstu", userStu.setPassword(null));
             session.setAttribute("userid", userStu.getId());
-            return ResultData.success().setMessage("登录成功").addExtend("userstu", userStu);
+            return ResultData.success().setMessage("登录成功").addExtend("data", userStu);
         } else {
             return ResultData.failure().setMessage("登录失败");
         }
