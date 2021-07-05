@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- MBG 运行环境 -->
+    <!-- targetRuntime: 指定使用哪种方式生成 CRUD 方法 -->
+    <!-- mybatis 有4种方式，其中介绍两种：
+           1. MyBatis3 支持动态的 CRUD
+           2. MyBatis3Simple 生成简单的 CRUD -->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <!-- 指定相关的注解 -->
+        <commentGenerator>
+            <!-- 取消所有注释 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 指定如何连接数据库 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://47.97.248.186:3306/crdb?serverTimezone=UTC"
+                        userId="root" password="Zwj110676">
+        </jdbcConnection>
+
+        <!-- java类型解析器 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 指定 javaBean 的生成策略 -->
+        <!-- 属性： targetPackage：目标包名 targetProject：目标工程 -->
+        <!-- targetPackage：只需填写包名即可 -->
+        <!-- targetProject：无论文件的存放位置是否在一个地方，其相对的是整个项目的文件目录 -->
+        <javaModelGenerator
+                targetPackage="com.smxy.campus_recruit.bean" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- sql 映射生成策略 -->
+        <sqlMapGenerator targetPackage="static.mybatis.mapper"
+                         targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 指定 mapper 接口所在的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.smxy.campus_recruit.mapper" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 对应数据表 -->
+        <!--        <table tableName="grade_career" domainObjectName="GradeCareer"></table>-->
+<!--        cr_collection_job, cr_eq_list, cr_job_list, cr_resume_list, cr_user_admin, cr_user_eq, cr_user_stu-->
+
+        <table tableName="cr_collection_job" domainObjectName="CRCollectionJob"></table>
+        <table tableName="cr_eq_list" domainObjectName="CREqList"></table>
+        <table tableName="cr_job_list" domainObjectName="CRJobList"></table>
+        <table tableName="cr_resume_list" domainObjectName="CRResumeList"></table>
+        <table tableName="cr_user_admin" domainObjectName="CRUserAdmin"></table>
+        <table tableName="cr_user_eq" domainObjectName="CRUserEq"></table>
+        <table tableName="cr_user_stu" domainObjectName="CRUserStu"></table>
+    </context>
+</generatorConfiguration>

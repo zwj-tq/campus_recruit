@@ -1,0 +1,33 @@
+mybatis:
+  mapper-locations: classpath:/static/mybatis/mapper/*.xml
+  type-aliases-package: com.smxy.campus_recruit.bean
+  config-location: classpath:/static/mybatis/mybatis-config.xml
+
+
+server:
+  port: 8058
+
+# 指定运行环境
+spring:
+  profiles:
+    active: dev
+
+---
+# 生产环境（部署后）
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://47.97.248.186:3306/crdb?serverTimezone=UTC&useSSL=false
+    username: root
+    password: Zwj110676
+    driver-class-name: com.mysql.jdbc.Driver
+
+---
+# 开发环境
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://47.97.248.186:3306/crdb?serverTimezone=UTC&useSSL=false
+    username: root
+    password: Zwj110676
+    driver-class-name: com.mysql.jdbc.Driver
