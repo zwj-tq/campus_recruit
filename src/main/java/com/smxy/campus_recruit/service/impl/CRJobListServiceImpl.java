@@ -1,10 +1,13 @@
 package com.smxy.campus_recruit.service.impl;
 
 import com.smxy.campus_recruit.bean.CRJobList;
+import com.smxy.campus_recruit.bean.example.CRJobListExample;
 import com.smxy.campus_recruit.mapper.CRJobListMapper;
 import com.smxy.campus_recruit.service.CRJobListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author 张伟杰
@@ -31,5 +34,19 @@ public class CRJobListServiceImpl implements CRJobListService {
     @Override
     public boolean update(CRJobList jobList) {
         return false;
+    }
+
+    @Override
+    public List<CRJobList> getByEpname(String epname) {
+        CRJobListExample example=new CRJobListExample();
+        example.createCriteria().andEpNameEqualTo(epname);
+        return mapper.selectByExample(example);
+    }
+
+    @Override
+    public List<CRJobList> getByJobname(String jobname) {
+        CRJobListExample example=new CRJobListExample();
+        example.createCriteria().andJobNameLike("%"+jobname+"%");
+        return mapper.selectByExample(example);
     }
 }

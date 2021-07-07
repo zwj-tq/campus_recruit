@@ -2,6 +2,8 @@ package com.smxy.campus_recruit.service;
 
 import com.smxy.campus_recruit.bean.CRJobList;
 
+import java.util.List;
+
 /**
  * @author 张伟杰
  * @ClassName CRJobListService.java
@@ -14,4 +16,6 @@ public interface CRJobListService {
 
     boolean update(CRJobList jobList);
 
+    List<CRJobList> getByEpname(String epname);
+    List<CRJobList> getByJobname(String jobname);
 }

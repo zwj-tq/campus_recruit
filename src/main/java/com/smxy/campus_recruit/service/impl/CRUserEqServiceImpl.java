@@ -44,7 +44,8 @@ public class CRUserEqServiceImpl implements CRUserEqService {
     @Override
     public CRUserEq verify(String username, String password) {
         CRUserEqExample example=new CRUserEqExample();
-        example.createCriteria().andEpNameEqualTo(username).andPasswordEqualTo(password);
+        example.createCriteria().andUsernameEqualTo(username).andPasswordEqualTo(password);
+        System.out.println(mapper.countByExample(example));
         CRUserEq eq= ListUitl.First(mapper.selectByExample(example));
         if(eq!=null){
             return eq;

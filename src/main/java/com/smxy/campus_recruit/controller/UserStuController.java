@@ -4,6 +4,7 @@ import com.smxy.campus_recruit.bean.CRCollectionJob;
 import com.smxy.campus_recruit.bean.CRResumeList;
 import com.smxy.campus_recruit.bean.CRUserStu;
 import com.smxy.campus_recruit.service.CRCollectionJobService;
+import com.smxy.campus_recruit.service.CRJobListService;
 import com.smxy.campus_recruit.service.CRResumeListService;
 import com.smxy.campus_recruit.service.CRUserStuService;
 import com.smxy.campus_recruit.util.ResultData;
@@ -34,6 +35,9 @@ public class UserStuController {
 
     @Autowired
     private CRCollectionJobService collectionJobService;
+
+    @Autowired
+    private CRJobListService jobListService;
 
     @PostMapping("/login")
     public ResultData login(@RequestParam("username") String username
@@ -133,6 +137,11 @@ public class UserStuController {
     public ResultData collectionds(HttpSession session) {
         int userid = (Integer) session.getAttribute("userid");
         return ResultData.success().addExtend("data", collectionJobService.getByUserId(userid));
+    }
+
+    @PostMapping("/searchjob")
+    public ResultData searchJob(String jobname){
+        return ResultData.success().addExtend("data",jobListService.getByJobname(jobname));
     }
 
 }

@@ -4,6 +4,7 @@ import com.smxy.campus_recruit.bean.CRJobList;
 import com.smxy.campus_recruit.bean.CRUserEq;
 import com.smxy.campus_recruit.bean.CRUserStu;
 import com.smxy.campus_recruit.service.CRJobListService;
+import com.smxy.campus_recruit.service.CRResumeListService;
 import com.smxy.campus_recruit.service.CRUserEqService;
 import com.smxy.campus_recruit.util.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ public class UserEpController {
     @Autowired
     private CRJobListService jobListService;
 
+    @Autowired
+    private CRResumeListService resumeListService;
 
     @PostMapping("/login")
     public ResultData login(@RequestParam("username") String username
@@ -96,6 +99,18 @@ public class UserEpController {
         }else{
             return ResultData.failure().setMessage("发布失败");
         }
+    }
+
+    @PostMapping("/getrecruit")
+    public ResultData getRecruit(HttpSession session){
+        CRUserEq userEq=(CRUserEq) session.getAttribute("userep");
+        return ResultData.success().addExtend("data",jobListService.getByEpname(userEq.getEpName()));
+    }
+
+    @PostMapping("/getresume")
+    public ResultData getResume(HttpSession session){
+        CRUserEq userEq=(CRUserEq) session.getAttribute("userep");
+        return ResultData.success().addExtend("data",resumeListService.getByEpname(userEq.getEpName()));
     }
 
 }
