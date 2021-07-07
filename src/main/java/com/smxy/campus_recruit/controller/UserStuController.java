@@ -55,6 +55,17 @@ public class UserStuController {
         return ResultData.success().setMessage("登出成功");
     }
 
+    @PostMapping("/regist")
+    public ResultData regist(CRUserStu userStu,HttpSession session){
+        if(userStuService.getByUsername(userStu.getUsername())!=null||
+                userStuService.getByPhone(userStu.getPhone())!=null){
+            return ResultData.failure().setMessage("用户名或手机号已存在");
+        }
+
+        userStuService.add(userStu);
+        return ResultData.success();
+    }
+
     @PostMapping("/setdetail")
     public ResultData setDetail(CRUserStu userStu, HttpSession session) {
         int userid = (Integer) session.getAttribute("userid");

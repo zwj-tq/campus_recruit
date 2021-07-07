@@ -7,4 +7,5 @@ package com.smxy.campus_recruit.service;
  * @createTime 2021年07月05日 11:28:00
  */
 public interface CREqListService {
+
 }

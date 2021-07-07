@@ -12,6 +12,10 @@
     <result column="ep_type" jdbcType="VARCHAR" property="epType" />
     <result column="ep_code" jdbcType="VARCHAR" property="epCode" />
     <result column="ep_adr" jdbcType="VARCHAR" property="epAdr" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="job_money" jdbcType="VARCHAR" property="jobMoney" />
+    <result column="job_se_time" jdbcType="VARCHAR" property="jobSeTime" />
+    <result column="job_degree_required" jdbcType="VARCHAR" property="jobDegreeRequired" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, name, phone, job_requirement, ep_name, ep_avatar, ep_introduce, ep_type, ep_code, 
-    ep_adr
+    ep_adr, job_name, job_money, job_se_time, job_degree_required
   </sql>
   <select id="selectByExample" parameterType="com.smxy.campus_recruit.bean.example.CRJobListExample" resultMap="BaseResultMap">
     select
@@ -109,11 +113,13 @@
     insert into cr_job_list (id, name, phone, 
       job_requirement, ep_name, ep_avatar, 
       ep_introduce, ep_type, ep_code, 
-      ep_adr)
+      ep_adr, job_name, job_money, 
+      job_se_time, job_degree_required)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{jobRequirement,jdbcType=VARCHAR}, #{epName,jdbcType=VARCHAR}, #{epAvatar,jdbcType=VARCHAR}, 
       #{epIntroduce,jdbcType=VARCHAR}, #{epType,jdbcType=VARCHAR}, #{epCode,jdbcType=VARCHAR}, 
-      #{epAdr,jdbcType=VARCHAR})
+      #{epAdr,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR}, #{jobMoney,jdbcType=VARCHAR}, 
+      #{jobSeTime,jdbcType=VARCHAR}, #{jobDegreeRequired,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.smxy.campus_recruit.bean.CRJobList">
     insert into cr_job_list
@@ -148,6 +154,18 @@
       <if test="epAdr != null">
         ep_adr,
       </if>
+      <if test="jobName != null">
+        job_name,
+      </if>
+      <if test="jobMoney != null">
+        job_money,
+      </if>
+      <if test="jobSeTime != null">
+        job_se_time,
+      </if>
+      <if test="jobDegreeRequired != null">
+        job_degree_required,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -179,6 +197,18 @@
       </if>
       <if test="epAdr != null">
         #{epAdr,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobMoney != null">
+        #{jobMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSeTime != null">
+        #{jobSeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDegreeRequired != null">
+        #{jobDegreeRequired,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +251,18 @@
       <if test="record.epAdr != null">
         ep_adr = #{record.epAdr,jdbcType=VARCHAR},
       </if>
+      <if test="record.jobName != null">
+        job_name = #{record.jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobMoney != null">
+        job_money = #{record.jobMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobSeTime != null">
+        job_se_time = #{record.jobSeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobDegreeRequired != null">
+        job_degree_required = #{record.jobDegreeRequired,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +279,11 @@
       ep_introduce = #{record.epIntroduce,jdbcType=VARCHAR},
       ep_type = #{record.epType,jdbcType=VARCHAR},
       ep_code = #{record.epCode,jdbcType=VARCHAR},
-      ep_adr = #{record.epAdr,jdbcType=VARCHAR}
+      ep_adr = #{record.epAdr,jdbcType=VARCHAR},
+      job_name = #{record.jobName,jdbcType=VARCHAR},
+      job_money = #{record.jobMoney,jdbcType=VARCHAR},
+      job_se_time = #{record.jobSeTime,jdbcType=VARCHAR},
+      job_degree_required = #{record.jobDegreeRequired,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +318,18 @@
       <if test="epAdr != null">
         ep_adr = #{epAdr,jdbcType=VARCHAR},
       </if>
+      <if test="jobName != null">
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobMoney != null">
+        job_money = #{jobMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSeTime != null">
+        job_se_time = #{jobSeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDegreeRequired != null">
+        job_degree_required = #{jobDegreeRequired,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -285,7 +343,11 @@
       ep_introduce = #{epIntroduce,jdbcType=VARCHAR},
       ep_type = #{epType,jdbcType=VARCHAR},
       ep_code = #{epCode,jdbcType=VARCHAR},
-      ep_adr = #{epAdr,jdbcType=VARCHAR}
+      ep_adr = #{epAdr,jdbcType=VARCHAR},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      job_money = #{jobMoney,jdbcType=VARCHAR},
+      job_se_time = #{jobSeTime,jdbcType=VARCHAR},
+      job_degree_required = #{jobDegreeRequired,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -51,15 +51,12 @@
         </javaClientGenerator>
 
         <!-- 对应数据表 -->
-        <!--        <table tableName="grade_career" domainObjectName="GradeCareer"></table>-->
-<!--        cr_collection_job, cr_eq_list, cr_job_list, cr_resume_list, cr_user_admin, cr_user_eq, cr_user_stu-->
-
-        <table tableName="cr_collection_job" domainObjectName="CRCollectionJob"></table>
-        <table tableName="cr_eq_list" domainObjectName="CREqList"></table>
+<!--        <table tableName="cr_collection_job" domainObjectName="CRCollectionJob"></table>-->
+<!--        <table tableName="cr_eq_list" domainObjectName="CREqList"></table>-->
         <table tableName="cr_job_list" domainObjectName="CRJobList"></table>
-        <table tableName="cr_resume_list" domainObjectName="CRResumeList"></table>
-        <table tableName="cr_user_admin" domainObjectName="CRUserAdmin"></table>
-        <table tableName="cr_user_eq" domainObjectName="CRUserEq"></table>
-        <table tableName="cr_user_stu" domainObjectName="CRUserStu"></table>
+<!--        <table tableName="cr_resume_list" domainObjectName="CRResumeList"></table>-->
+<!--        <table tableName="cr_user_admin" domainObjectName="CRUserAdmin"></table>-->
+<!--        <table tableName="cr_user_eq" domainObjectName="CRUserEq"></table>-->
+<!--        <table tableName="cr_user_stu" domainObjectName="CRUserStu"></table>-->
     </context>
 </generatorConfiguration>

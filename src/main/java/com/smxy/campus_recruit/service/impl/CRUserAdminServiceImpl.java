@@ -1,5 +1,7 @@
 package com.smxy.campus_recruit.service.impl;
 
+import com.smxy.campus_recruit.bean.CRUserAdmin;
+import com.smxy.campus_recruit.bean.CRUserStu;
 import com.smxy.campus_recruit.service.CRUserAdminService;
 import org.springframework.stereotype.Service;
 
@@ -11,4 +13,28 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CRUserAdminServiceImpl implements CRUserAdminService {
+    @Override
+    public boolean add(CRUserAdmin userAdmin) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Integer id) {
+        return false;
+    }
+
+    @Override
+    public boolean update() {
+        return false;
+    }
+
+    @Override
+    public boolean updateAll() {
+        return false;
+    }
+
+    @Override
+    public CRUserStu verify(String username, String password) {
+        return null;
+    }
 }
