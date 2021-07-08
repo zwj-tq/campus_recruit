@@ -4,6 +4,7 @@ import com.smxy.campus_recruit.bean.CRJobList;
 import com.smxy.campus_recruit.bean.example.CRJobListExample;
 import com.smxy.campus_recruit.mapper.CRJobListMapper;
 import com.smxy.campus_recruit.service.CRJobListService;
+import com.smxy.campus_recruit.util.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,10 @@ public class CRJobListServiceImpl implements CRJobListService {
         CRJobListExample example=new CRJobListExample();
         example.createCriteria().andJobNameLike("%"+jobname+"%");
         return mapper.selectByExample(example);
+    }
+
+    @Override
+    public List<CRJobList> getAll() {
+        return mapper.selectByExample(null);
     }
 }

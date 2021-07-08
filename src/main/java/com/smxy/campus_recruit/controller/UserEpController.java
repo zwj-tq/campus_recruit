@@ -43,7 +43,7 @@ public class UserEpController {
             , HttpSession session) {
         CRUserEq userEq = userEqService.verify(username, password);
         if (userEq != null) {
-            if(userEq.getEpName().startsWith("未分配-")){
+            if(userEq.getEpName().startsWith("未审核-")){
                 return ResultData.failure().setMessage("未审核");
             }
             session.setAttribute("usereq", userEq.setPassword(null));

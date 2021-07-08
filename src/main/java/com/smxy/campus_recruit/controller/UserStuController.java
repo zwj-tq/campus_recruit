@@ -145,4 +145,9 @@ public class UserStuController {
         return ResultData.success().addExtend("data",jobListService.getByJobname(jobname));
     }
 
+    @PostMapping("/getalljob")
+    public ResultData getAllJob(){
+        return ResultData.success().addExtend("data",jobListService.getAll());
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.smxy.campus_recruit.service;
 
 import com.smxy.campus_recruit.bean.CRJobList;
+import com.smxy.campus_recruit.util.ResultData;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface CRJobListService {
 
     List<CRJobList> getByEpname(String epname);
     List<CRJobList> getByJobname(String jobname);
+
+    List<CRJobList> getAll();
 }
