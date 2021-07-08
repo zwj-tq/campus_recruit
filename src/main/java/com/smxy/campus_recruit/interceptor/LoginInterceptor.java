@@ -47,12 +47,12 @@ public class LoginInterceptor implements HandlerInterceptor {
             writer.close();
             return false;
         }
-        if(servletPath.startsWith("/userep") && ep==null){
+        else if(servletPath.startsWith("/userep") && ep==null){
             PrintWriter writer = response.getWriter();
             writer.append(jsonData1);
             writer.close();
             return false;
         }
-        return false;
+        return true;
     }
 }
