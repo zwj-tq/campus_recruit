@@ -44,7 +44,7 @@ public class UserEpController {
         CRUserEq userEq = userEqService.verify(username, password);
         if (userEq != null) {
             session.setAttribute("usereq", userEq.setPassword(null));
-            session.setAttribute("userid", userEq.getId());
+            session.setAttribute("usereqid", userEq.getId());
             return ResultData.success().setMessage("登录成功").addExtend("data", userEq);
         } else {
             return ResultData.failure().setMessage("登录失败");
@@ -69,10 +69,10 @@ public class UserEpController {
 
     @PostMapping("/setdetail")
     public ResultData setDetail(CRUserEq userEq, HttpSession session) {
-        int userid = (Integer) session.getAttribute("userid");
+        int userid = (Integer) session.getAttribute("usereqid");
         userEq.setId(userid);
         if (userEqService.update(userEq)) {
-            session.setAttribute("userstu",userEqService.getById(userid));
+            session.setAttribute("usereq",userEqService.getById(userid));
             return ResultData.success().setMessage("修改成功");
         } else {
             return ResultData.failure().setMessage("修改失败");
@@ -82,7 +82,7 @@ public class UserEpController {
     @PostMapping("/getdetail")
     public ResultData getDetail(HttpSession session) {
         CRUserEq userEq = (CRUserEq) session.getAttribute("usereq");
-        return ResultData.success().addExtend("userstu", userEq);
+        return ResultData.success().addExtend("data", userEq);
     }
 
     @PostMapping("/recruit")
@@ -104,13 +104,22 @@ public class UserEpController {
 
     @PostMapping("/getrecruit")
     public ResultData getRecruit(HttpSession session){
-        CRUserEq userEq=(CRUserEq) session.getAttribute("userep");
+        CRUserEq userEq=(CRUserEq) session.getAttribute("usereq");
         return ResultData.success().addExtend("data",jobListService.getByEpname(userEq.getEpName()));
+    }
+
+    @PostMapping("/deleterecruit")
+    public ResultData deleteRecruit(Integer id, HttpSession session){
+        if(jobListService.delete(id)){
+            return ResultData.success().setMessage("删除成功");
+        }else{
+            return ResultData.failure().setMessage("删除失败");
+        }
     }
 
     @PostMapping("/getresume")
     public ResultData getResume(HttpSession session){
-        CRUserEq userEq=(CRUserEq) session.getAttribute("userep");
+        CRUserEq userEq=(CRUserEq) session.getAttribute("usereq");
         return ResultData.success().addExtend("data",resumeListService.getByEpname(userEq.getEpName()));
     }
 

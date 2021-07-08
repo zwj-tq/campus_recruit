@@ -1,5 +1,6 @@
 package com.smxy.campus_recruit.config;
 
+import com.smxy.campus_recruit.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,26 +19,24 @@ import java.util.List;
 @Configuration
 public class MyMVCConfig implements WebMvcConfigurer {
 
-//    /**
-//     * 配置拦截器
-//     */
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        // 设置拦截的地址
-//        List<String> addPath = new ArrayList<>();
-//        addPath.add("/userstu/modifyinfo");
-//        addPath.add("/user/modifypwd");
-//        addPath.add("/data/**");
-//        addPath.add("/admin/**");
-//        // 设置不拦截地址
-//        List<String> excludePath = new ArrayList<>();
-//        excludePath.add("/admin/login");
-//        excludePath.add("/data/allcareer");
-//
-//        // 配置拦截器
-//        registry.addInterceptor(new LoginInterceptor()).addPathPatterns(addPath)
-//                .excludePathPatterns(excludePath);
-//    }
+    /**
+     * 配置拦截器
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 设置拦截的地址
+        List<String> addPath = new ArrayList<>();
+        addPath.add("/userstu/**");
+        addPath.add("/userep/**");
+        // 设置不拦截地址
+        List<String> excludePath = new ArrayList<>();
+        excludePath.add("/userstu/login");
+        excludePath.add("/userep/login");
+
+        // 配置拦截器
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns(addPath)
+                .excludePathPatterns(excludePath);
+    }
 
 
     /**
