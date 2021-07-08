@@ -75,6 +75,7 @@ public class UserStuController {
         int userid = (Integer) session.getAttribute("userid");
         userStu.setId(userid);
         if (userStuService.update(userStu)) {
+            session.setAttribute("userstu",userStuService.getById(userid));
             return ResultData.success().setMessage("修改成功");
         } else {
             return ResultData.failure().setMessage("修改失败");

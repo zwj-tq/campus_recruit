@@ -3,6 +3,7 @@ package com.smxy.campus_recruit.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
@@ -47,6 +48,11 @@ public class MyMVCConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedHeaders("*").allowedMethods("*")
                 .allowedOrigins("*").allowCredentials(true);
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/api/file/**").addResourceLocations("file:" + "D:/test/");
     }
 
 }

@@ -72,4 +72,9 @@ public class CRUserEqServiceImpl implements CRUserEqService {
         example.createCriteria().andPhoneEqualTo(phone);
         return ListUitl.First(mapper.selectByExample(example));
     }
+
+    @Override
+    public CRUserEq getById(Integer userid) {
+        return mapper.selectByPrimaryKey(userid);
+    }
 }

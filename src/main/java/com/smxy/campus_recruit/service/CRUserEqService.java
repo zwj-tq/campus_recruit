@@ -22,4 +22,6 @@ public interface CRUserEqService {
     CRUserEq getByUsername(String username);
 
     CRUserEq getByPhone(String phone);
+
+    CRUserEq getById(Integer userid);
 }

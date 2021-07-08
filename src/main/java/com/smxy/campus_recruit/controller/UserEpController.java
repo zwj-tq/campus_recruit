@@ -63,7 +63,7 @@ public class UserEpController {
                 userEqService.getByPhone(userEq.getPhone())!=null){
             return ResultData.failure().setMessage("用户名或电话已存在");
         }
-        userEqService.add(userEq);
+        userEqService.add(userEq.setEpName("未审核-"+userEq.getEpName()));
         return ResultData.success();
     }
 
@@ -72,6 +72,7 @@ public class UserEpController {
         int userid = (Integer) session.getAttribute("userid");
         userEq.setId(userid);
         if (userEqService.update(userEq)) {
+            session.setAttribute("userstu",userEqService.getById(userid));
             return ResultData.success().setMessage("修改成功");
         } else {
             return ResultData.failure().setMessage("修改失败");
