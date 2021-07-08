@@ -62,10 +62,10 @@ public class UserController {
         CRUserStu userStu= (CRUserStu) session.getAttribute("userstu");
         CRUserEq userEq= (CRUserEq) session.getAttribute("usereq");
         if(userStu!=null){
-            return ResultData.success().addExtend("data","学生");
+            return ResultData.success().addExtend("role","学生").addExtend("data",userStu);
         }
         if(userEq!=null){
-            return ResultData.success().addExtend("data","企业");
+            return ResultData.success().addExtend("role","企业").addExtend("data",userEq);
         }
         return ResultData.failure().setMessage("未登录");
     }
