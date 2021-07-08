@@ -1,5 +1,7 @@
 package com.smxy.campus_recruit.controller;
 
+import com.smxy.campus_recruit.bean.CRUserEq;
+import com.smxy.campus_recruit.bean.CRUserStu;
 import com.smxy.campus_recruit.util.ResultData;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
@@ -51,6 +54,20 @@ public class UserController {
             sb.append(base.charAt(number));
         }
         return sb.toString();
+    }
+
+
+    @PostMapping("/role")
+    public ResultData role(HttpSession session){
+        CRUserStu userStu= (CRUserStu) session.getAttribute("userstu");
+        CRUserEq userEq= (CRUserEq) session.getAttribute("usereq");
+        if(userStu!=null){
+            return ResultData.success().addExtend("data","学生");
+        }
+        if(userEq!=null){
+            return ResultData.success().addExtend("data","企业");
+        }
+        return ResultData.failure().setMessage("未登录");
     }
 
 }

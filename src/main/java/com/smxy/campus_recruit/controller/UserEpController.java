@@ -36,7 +36,7 @@ public class UserEpController {
 
     @Autowired
     private CRResumeListService resumeListService;
-
+    
     @PostMapping("/login")
     public ResultData login(@RequestParam("username") String username
             , @RequestParam("password") String password
